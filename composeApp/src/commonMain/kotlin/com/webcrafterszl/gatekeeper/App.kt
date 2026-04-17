@@ -19,7 +19,6 @@ import com.webcrafterszl.gatekeeper.ui.auth.RegisterScreen
 import com.webcrafterszl.gatekeeper.ui.auth.SelectionScreen
 import com.webcrafterszl.gatekeeper.ui.components.AppButton
 import com.webcrafterszl.gatekeeper.ui.screens.CredencialCrudScreen
-import com.webcrafterszl.gatekeeper.ui.screens.FirebaseConnectionTestScreen
 import com.webcrafterszl.gatekeeper.ui.screens.PortadorCrudScreen
 import com.webcrafterszl.gatekeeper.ui.screens.ReservaCrudScreen
 import com.webcrafterszl.gatekeeper.ui.screens.VisitanteCrudScreen
@@ -52,13 +51,9 @@ fun App() {
             AppRoute.Selection -> SelectionScreen(
                 onAdminClick = { navigation.navigateTo(AppRoute.AdminMenu) },
                 onUserClick = { navigation.navigateTo(AppRoute.UserMenu) },
-                onFirebaseTestClick = { navigation.navigateTo(AppRoute.FirebaseConnectionTest) },
                 onLogoutClick = { navigation.navigateTo(AppRoute.Login) },
             )
 
-            AppRoute.FirebaseConnectionTest -> FirebaseConnectionTestScreen(
-                onBack = { navigation.navigateTo(AppRoute.Selection) },
-            )
 
             AppRoute.AdminMenu -> MenuScreen(
                 title = "Menu Administrativo",

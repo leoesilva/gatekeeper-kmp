@@ -11,11 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.webcrafterszl.gatekeeper.data.model.CredencialRFID
 import com.webcrafterszl.gatekeeper.data.model.Identificavel
-import com.webcrafterszl.gatekeeper.data.model.Portador
-import com.webcrafterszl.gatekeeper.data.model.Reserva
-import com.webcrafterszl.gatekeeper.data.model.Visitante
 import com.webcrafterszl.gatekeeper.ui.components.AccessCard
 import com.webcrafterszl.gatekeeper.ui.components.AppButton
 import com.webcrafterszl.gatekeeper.ui.components.AppTextField
@@ -36,6 +32,7 @@ private fun <T : Identificavel> CrudScreen(
     title: String,
     viewModelFormValues: Map<String, String>,
     items: List<T>,
+    errorMessage: String?,
     fields: List<FormFieldSpec>,
     onValueChange: (String, String) -> Unit,
     onSave: () -> Unit,
@@ -65,6 +62,10 @@ private fun <T : Identificavel> CrudScreen(
             AppButton(text = "Limpar Campos", onClick = onClear)
         }
 
+        errorMessage?.let {
+            Text(it, color = MaterialTheme.colorScheme.error)
+        }
+
         if (items.isEmpty()) {
             Text("Nenhum registro encontrado.")
         } else {
@@ -91,6 +92,7 @@ fun PortadorCrudScreen(
         title = "CRUD Portador",
         viewModelFormValues = viewModel.formValues,
         items = viewModel.itens,
+        errorMessage = viewModel.errorMessage,
         fields = listOf(
             FormFieldSpec("id", "ID"),
             FormFieldSpec("nomeCompleto", "Nome completo"),
@@ -117,6 +119,7 @@ fun CredencialCrudScreen(
         title = "CRUD Credencial RFID",
         viewModelFormValues = viewModel.formValues,
         items = viewModel.itens,
+        errorMessage = viewModel.errorMessage,
         fields = listOf(
             FormFieldSpec("id", "ID"),
             FormFieldSpec("codigoHexadecimal", "Código hexadecimal"),
@@ -143,6 +146,7 @@ fun VisitanteCrudScreen(
         title = "CRUD Visitante",
         viewModelFormValues = viewModel.formValues,
         items = viewModel.itens,
+        errorMessage = viewModel.errorMessage,
         fields = listOf(
             FormFieldSpec("id", "ID"),
             FormFieldSpec("nomeVisitante", "Nome do visitante"),
@@ -169,6 +173,7 @@ fun ReservaCrudScreen(
         title = "CRUD Reserva",
         viewModelFormValues = viewModel.formValues,
         items = viewModel.itens,
+        errorMessage = viewModel.errorMessage,
         fields = listOf(
             FormFieldSpec("id", "ID"),
             FormFieldSpec("nomeEspaco", "Nome do espaço"),
