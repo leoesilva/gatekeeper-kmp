@@ -1,9 +1,11 @@
 package com.webcrafterszl.gatekeeper.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,11 +31,25 @@ fun AppTextField(
 		label = { Text(label) },
 		modifier = modifier.fillMaxWidth(),
 		singleLine = true,
+		colors = OutlinedTextFieldDefaults.colors(
+			focusedContainerColor = MaterialTheme.colorScheme.surface,
+			unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+			focusedTextColor = MaterialTheme.colorScheme.onSurface,
+			unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+			focusedBorderColor = MaterialTheme.colorScheme.primary,
+			unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+			focusedLabelColor = MaterialTheme.colorScheme.primary,
+			unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
+			cursorColor = MaterialTheme.colorScheme.primary,
+		),
 		visualTransformation = if (secureText && !showPassword) PasswordVisualTransformation() else VisualTransformation.None,
 		trailingIcon = if (secureText) {
 			{
-				IconButton(onClick = { showPassword = !showPassword }) {
-					Text(if (showPassword) "👁️" else "🔒")
+				TextButton(onClick = { showPassword = !showPassword }) {
+					Text(
+						text = if (showPassword) "Ocultar" else "Mostrar",
+						color = MaterialTheme.colorScheme.primary,
+					)
 				}
 			}
 		} else {

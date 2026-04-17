@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +23,7 @@ import com.webcrafterszl.gatekeeper.ui.screens.CredencialCrudScreen
 import com.webcrafterszl.gatekeeper.ui.screens.PortadorCrudScreen
 import com.webcrafterszl.gatekeeper.ui.screens.ReservaCrudScreen
 import com.webcrafterszl.gatekeeper.ui.screens.VisitanteCrudScreen
+import com.webcrafterszl.gatekeeper.ui.theme.GatekeeperTheme
 import com.webcrafterszl.gatekeeper.viewmodel.CredencialViewModel
 import com.webcrafterszl.gatekeeper.viewmodel.PortadorViewModel
 import com.webcrafterszl.gatekeeper.viewmodel.ReservaViewModel
@@ -30,7 +32,7 @@ import com.webcrafterszl.gatekeeper.viewmodel.VisitanteViewModel
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
+    GatekeeperTheme {
         val navigation = remember { AppNavigation() }
         val portadorViewModel = remember { PortadorViewModel() }
         val credencialViewModel = remember { CredencialViewModel() }
@@ -105,12 +107,14 @@ private fun MenuScreen(
     onSecondary: () -> Unit,
     onBack: () -> Unit,
 ) {
+    val colorScheme = MaterialTheme.colorScheme
+
     Column(
-        modifier = Modifier.fillMaxSize().padding(24.dp),
+        modifier = Modifier.fillMaxSize().background(colorScheme.background).padding(24.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(title, style = MaterialTheme.typography.headlineMedium)
+        Text(title, style = MaterialTheme.typography.headlineMedium, color = colorScheme.tertiary)
         AppButton(text = primaryLabel, modifier = Modifier.padding(top = 24.dp), onClick = onPrimary)
         AppButton(text = secondaryLabel, modifier = Modifier.padding(top = 12.dp), onClick = onSecondary)
         AppButton(text = "Voltar", modifier = Modifier.padding(top = 24.dp), onClick = onBack)
