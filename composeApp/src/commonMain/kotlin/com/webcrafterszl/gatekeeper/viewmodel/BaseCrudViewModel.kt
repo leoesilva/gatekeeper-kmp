@@ -53,34 +53,40 @@ abstract class BaseCrudViewModel<T : Identificavel>(
 
     fun salvar() {
         scope.launch {
-            executarOperacao { salvarItem(toEntity(formValues)) }
+          val sucesso = executarOperacao { salvarItem(toEntity(formValues)) }
+          if (sucesso) {
             limparCampos()
             recarregar()
+          }
         }
     }
 
     fun apagar(item: T) {
         scope.launch {
-            executarOperacao { excluirItem(item) }
+          val sucesso = executarOperacao { excluirItem(item) }
+          if (sucesso) {
             recarregar()
+          }
         }
     }
 
     fun recarregar() {
         scope.launch {
             executarOperacao {
-                itens.clear()
-                itens.addAll(carregarItens())
+            val carregados = carregarItens()
+            itens.clear()
+            itens.addAll(carregados)
             }
         }
     }
 
-    private suspend fun executarOperacao(operacao: suspend () -> Unit) {
+      private suspend fun executarOperacao(operacao: suspend () -> Unit): Boolean {
         isLoading = true
         errorMessage = null
-        runCatching { operacao() }
+        val resultado = runCatching { operacao() }
             .onFailure { errorMessage = it.message ?: "Falha inesperada ao processar o CRUD." }
         isLoading = false
+        return resultado.isSuccess
     }
 
     override fun onCleared() {

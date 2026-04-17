@@ -8,7 +8,6 @@ sealed interface AppRoute {
 	data object Login : AppRoute
 	data object Register : AppRoute
 	data object Selection : AppRoute
-	data object FirebaseConnectionTest : AppRoute
 	data object AdminMenu : AppRoute
 	data object UserMenu : AppRoute
 	data object PortadorCrud : AppRoute

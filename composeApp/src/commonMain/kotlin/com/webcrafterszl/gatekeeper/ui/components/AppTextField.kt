@@ -33,7 +33,7 @@ fun AppTextField(
 		trailingIcon = if (secureText) {
 			{
 				IconButton(onClick = { showPassword = !showPassword }) {
-					Text(if (showPassword) "Ocultar" else "Mostrar")
+					Text(if (showPassword) "👁️" else "🔒")
 				}
 			}
 		} else {

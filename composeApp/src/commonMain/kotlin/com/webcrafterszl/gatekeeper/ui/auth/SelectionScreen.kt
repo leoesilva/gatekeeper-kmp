@@ -16,7 +16,6 @@ import com.webcrafterszl.gatekeeper.ui.components.AppButton
 fun SelectionScreen(
 	onAdminClick: () -> Unit,
 	onUserClick: () -> Unit,
-	onFirebaseTestClick: () -> Unit,
 	onLogoutClick: () -> Unit,
 ) {
 	Column(
@@ -28,7 +27,6 @@ fun SelectionScreen(
 		Text("Administrador ou Autoatendimento", style = MaterialTheme.typography.bodyMedium)
 		AppButton(text = "Entrar como Admin", modifier = Modifier.padding(top = 24.dp), onClick = onAdminClick)
 		AppButton(text = "Entrar como Usuário", modifier = Modifier.padding(top = 12.dp), onClick = onUserClick)
-		AppButton(text = "Testar Firebase", modifier = Modifier.padding(top = 12.dp), onClick = onFirebaseTestClick)
 		AppButton(text = "Sair", modifier = Modifier.padding(top = 24.dp), onClick = onLogoutClick)
 	}
 }
