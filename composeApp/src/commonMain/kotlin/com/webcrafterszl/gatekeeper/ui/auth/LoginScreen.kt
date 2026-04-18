@@ -2,7 +2,6 @@ package com.webcrafterszl.gatekeeper.ui.auth
 
 import androidx.compose.foundation.Image
 import org.jetbrains.compose.resources.painterResource
-// Substitua 'gatekeeper' pelo nome do seu projeto se for diferente
 import gatekeeper.composeapp.generated.resources.Res
 import gatekeeper.composeapp.generated.resources.gatekeeper_logo
 import androidx.compose.foundation.background
